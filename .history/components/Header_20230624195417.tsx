@@ -33,6 +33,13 @@ const Header = () => {
           >
             Volume
           </Link>
+
+          <Link
+            href="/pennyStockswithNum"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:bg-white hover:p-2 hover:rounded-md hover:text-black mr-7"
+          >
+            Penny Stocks with N
+          </Link>
         </div>
       </div>
     </nav>
