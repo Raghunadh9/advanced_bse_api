@@ -9,22 +9,10 @@ const HomePage = async () => {
     <div>
       <center>
         <div className="">
-          <div className="">
-            You are filtereing Percentage above 2% and with high Volume.
-          </div>
+          <div className="">You are filtereing only Percentage.</div>
           <br />
 
-          <div className="">
-            You Got{" "}
-            {
-              allData?.Table?.sort((a, b) =>
-                a.trd_vol < b.trd_vol ? 1 : -1
-              ).filter(
-                (item) => item.change_percent > 2 && item.change_percent < 20
-              ).length
-            }{" "}
-            Data Length
-          </div>
+          <div className="">You Got {allData.Table.length} Data Length</div>
         </div>
       </center>
       <table className="mt-4 table w-full p-4">
@@ -54,10 +42,8 @@ const HomePage = async () => {
           </tr>
         </thead>
         {!isDataEmpty ? (
-          allData?.Table.sort((a, b) => (a.trd_vol < b.trd_vol ? 1 : -1))
-            .filter(
-              (item) => item.change_percent > 2 && item.change_percent < 20
-            )
+          allData?.Table
+            // .sort((a, b) => (a.trd_vol < b.trd_vol ? 1 : -1))
 
             .map((i, index) => {
               return (
@@ -85,30 +71,12 @@ const HomePage = async () => {
                         .replaceAll(")", "")
                         .replaceAll("&", "and")}
                     </td>
-                    <td className="border border-black ">
-                      <span className="font-bold text-md">
-                        {i.ltradert.toString().split(".")[0]}
-                      </span>
-                      <span className=" text-xs">
-                        {i.ltradert.toString().split(".")[1] === undefined
-                          ? ".00"
-                          : "." + i.ltradert.toString().split(".")[1]}
-                      </span>
-                    </td>
+                    <td className="border border-black ">{i.ltradert}</td>
 
                     <td className="border border-black p-2">
                       {i.change_percent}
                     </td>
-                    <td className="border border-black p-2 underline text-blue-500">
-                      {" "}
-                      <a
-                        href={`https://in.tradingview.com/chart/qmDo3C1P/?symbol=BSE%3A${i.scripname}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Tr.v
-                      </a>
-                    </td>
+                    <td>T.R</td>
                     <td className="border border-black p-2 underline text-blue-500">
                       {" "}
                       <a
@@ -199,7 +167,7 @@ const HomePage = async () => {
               );
             })
         ) : (
-          <div>Can&apos;t load</div>
+          <div>Failed to load data</div>
         )}
       </table>
     </div>

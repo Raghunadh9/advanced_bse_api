@@ -43,7 +43,6 @@ const HomePage = async () => {
             <th className="border border-black ">Company Name</th>
             <th className="border border-black ">LTP</th>
             <th className="border border-black ">Now %</th>
-            <th className="border border-black ">Tr.v</th>
             <th className="border border-black ">Z</th>
             <th className="border border-black ">M.C</th>
             <th className="border border-black ">N</th>
@@ -85,29 +84,10 @@ const HomePage = async () => {
                         .replaceAll(")", "")
                         .replaceAll("&", "and")}
                     </td>
-                    <td className="border border-black ">
-                      <span className="font-bold text-md">
-                        {i.ltradert.toString().split(".")[0]}
-                      </span>
-                      <span className=" text-xs">
-                        {i.ltradert.toString().split(".")[1] === undefined
-                          ? ".00"
-                          : "." + i.ltradert.toString().split(".")[1]}
-                      </span>
-                    </td>
+                    <td className="border border-black ">{i.ltradert}</td>
 
                     <td className="border border-black p-2">
                       {i.change_percent}
-                    </td>
-                    <td className="border border-black p-2 underline text-blue-500">
-                      {" "}
-                      <a
-                        href={`https://in.tradingview.com/chart/qmDo3C1P/?symbol=BSE%3A${i.scripname}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Tr.v
-                      </a>
                     </td>
                     <td className="border border-black p-2 underline text-blue-500">
                       {" "}

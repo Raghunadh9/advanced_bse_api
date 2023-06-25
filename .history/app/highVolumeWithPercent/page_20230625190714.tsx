@@ -43,7 +43,6 @@ const HomePage = async () => {
             <th className="border border-black ">Company Name</th>
             <th className="border border-black ">LTP</th>
             <th className="border border-black ">Now %</th>
-            <th className="border border-black ">Tr.v</th>
             <th className="border border-black ">Z</th>
             <th className="border border-black ">M.C</th>
             <th className="border border-black ">N</th>
