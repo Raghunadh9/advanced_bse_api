@@ -1,12 +1,10 @@
 import fetchAllData, { getDetails } from "@/lib";
 import { allDataArrayInterFace } from "@/types";
-import { GetDetailsComponent } from "@/components/index";
 
 const HomePage = async () => {
   const allData: allDataArrayInterFace = await fetchAllData();
   const isDataEmpty =
     !Array.isArray(allData.Table) || allData.Table.length < 1 || !allData.Table;
-
   return (
     <div>
       <center>
@@ -61,14 +59,10 @@ const HomePage = async () => {
               (item) => item.change_percent > 2 && item.change_percent < 20
             )
 
-            .map(async (i, index) => {
+            .map((i, index) => {
               return (
                 <tbody key={index}>
-                  <tr
-                    className={`border border-black 
-              
-                    `}
-                  >
+                  <tr className="border border-black ">
                     <td className="border border-black "> {index + 1}</td>
                     <td className="underline text-blue-500">
                       <a
@@ -197,10 +191,9 @@ const HomePage = async () => {
                       </a>
                     </td>
                     <td className="border border-black p-2">{i.trd_vol}</td>
-                    <td className={`border   border-black p-2 font-bold `}>
+                    <td className="border  border-black p-2 font-bold">
                       {getDetails(i.scrip_cd)} {" %"}
                     </td>
-                    {/* <GetDetailsComponent scipcode={i.scrip_cd} /> */}
                   </tr>
                 </tbody>
               );

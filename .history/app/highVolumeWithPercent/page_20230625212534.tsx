@@ -1,6 +1,5 @@
 import fetchAllData, { getDetails } from "@/lib";
 import { allDataArrayInterFace } from "@/types";
-import { GetDetailsComponent } from "@/components/index";
 
 const HomePage = async () => {
   const allData: allDataArrayInterFace = await fetchAllData();
@@ -65,8 +64,8 @@ const HomePage = async () => {
               return (
                 <tbody key={index}>
                   <tr
-                    className={`border border-black 
-              
+                    className={`border border-black
+                   
                     `}
                   >
                     <td className="border border-black "> {index + 1}</td>
@@ -198,9 +197,9 @@ const HomePage = async () => {
                     </td>
                     <td className="border border-black p-2">{i.trd_vol}</td>
                     <td className={`border   border-black p-2 font-bold `}>
+                      <span>gh</span>
                       {getDetails(i.scrip_cd)} {" %"}
                     </td>
-                    {/* <GetDetailsComponent scipcode={i.scrip_cd} /> */}
                   </tr>
                 </tbody>
               );

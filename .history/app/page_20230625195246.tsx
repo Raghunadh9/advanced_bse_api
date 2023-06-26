@@ -1,32 +1,18 @@
 import fetchAllData, { getDetails } from "@/lib";
 import { allDataArrayInterFace } from "@/types";
-import { GetDetailsComponent } from "@/components/index";
 
 const HomePage = async () => {
   const allData: allDataArrayInterFace = await fetchAllData();
   const isDataEmpty =
     !Array.isArray(allData.Table) || allData.Table.length < 1 || !allData.Table;
-
   return (
     <div>
       <center>
         <div className="">
-          <div className="">
-            You are filtereing Percentage above 2% and with high Volume.
-          </div>
+          <div className="">You are filtereing only Percentage.</div>
           <br />
 
-          <div className="">
-            You Got{" "}
-            {
-              allData?.Table?.sort((a, b) =>
-                a.trd_vol < b.trd_vol ? 1 : -1
-              ).filter(
-                (item) => item.change_percent > 2 && item.change_percent < 20
-              ).length
-            }{" "}
-            Data Length
-          </div>
+          <div className="">You Got {allData.Table.length} Data Length</div>
         </div>
       </center>
       <table className="mt-4 table w-full p-4">
@@ -56,19 +42,13 @@ const HomePage = async () => {
           </tr>
         </thead>
         {!isDataEmpty ? (
-          allData?.Table.sort((a, b) => (a.trd_vol < b.trd_vol ? 1 : -1))
-            .filter(
-              (item) => item.change_percent > 2 && item.change_percent < 20
-            )
+          allData?.Table
+            // .sort((a, b) => (a.trd_vol < b.trd_vol ? 1 : -1))
 
-            .map(async (i, index) => {
+            .map((i, index) => {
               return (
                 <tbody key={index}>
-                  <tr
-                    className={`border border-black 
-              
-                    `}
-                  >
+                  <tr className="border border-black ">
                     <td className="border border-black "> {index + 1}</td>
                     <td className="underline text-blue-500">
                       <a
@@ -197,16 +177,15 @@ const HomePage = async () => {
                       </a>
                     </td>
                     <td className="border border-black p-2">{i.trd_vol}</td>
-                    <td className={`border   border-black p-2 font-bold `}>
+                    <td className="border  border-black p-2 font-bold">
                       {getDetails(i.scrip_cd)} {" %"}
                     </td>
-                    {/* <GetDetailsComponent scipcode={i.scrip_cd} /> */}
                   </tr>
                 </tbody>
               );
             })
         ) : (
-          <div>Can&apos;t load</div>
+          <div>Failed to load data</div>
         )}
       </table>
     </div>

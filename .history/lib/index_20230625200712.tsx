@@ -7,13 +7,13 @@ export default async function fetchAllData() {
   if (!res.ok) throw new Error("Error while fetching all data");
   return res?.json();
 }
-export async function getDetails(scrip_cd?: number) {
+export async function getDetails(scrip_cd: number) {
   try {
     const res = await fetch(
       `https://api.bseindia.com/BseIndiaAPI/api/PriceBand/w?scripcode=${scrip_cd}`
     );
     const result: getDetailsProps = await res?.json();
-    return result.PBpcUC;
+    return <span>{Object.values(result).map((i) => i.PBpcUC)}</span>;
   } catch (error) {
     console.log(error);
   }

@@ -1,11 +1,14 @@
 import fetchAllData, { getDetails } from "@/lib";
 import { allDataArrayInterFace } from "@/types";
 import { GetDetailsComponent } from "@/components/index";
+import Cookies from "js-cookie";
 
 const HomePage = async () => {
   const allData: allDataArrayInterFace = await fetchAllData();
   const isDataEmpty =
     !Array.isArray(allData.Table) || allData.Table.length < 1 || !allData.Table;
+  const makeItInvisible = Cookies.get("removeElement");
+  console.log("invi", makeItInvisible);
 
   return (
     <div>
@@ -65,8 +68,8 @@ const HomePage = async () => {
               return (
                 <tbody key={index}>
                   <tr
-                    className={`border border-black 
-              
+                    className={`border border-black
+                   ${!makeItInvisible ? "" : "bg-black"}
                     `}
                   >
                     <td className="border border-black "> {index + 1}</td>
@@ -197,10 +200,11 @@ const HomePage = async () => {
                       </a>
                     </td>
                     <td className="border border-black p-2">{i.trd_vol}</td>
-                    <td className={`border   border-black p-2 font-bold `}>
+                    {/* <td className={`border   border-black p-2 font-bold `}>
+                      
                       {getDetails(i.scrip_cd)} {" %"}
-                    </td>
-                    {/* <GetDetailsComponent scipcode={i.scrip_cd} /> */}
+                    </td> */}
+                    <GetDetailsComponent scipcode={i.scrip_cd} />
                   </tr>
                 </tbody>
               );

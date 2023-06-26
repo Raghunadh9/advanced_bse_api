@@ -13,7 +13,11 @@ export async function getDetails(scrip_cd?: number) {
       `https://api.bseindia.com/BseIndiaAPI/api/PriceBand/w?scripcode=${scrip_cd}`
     );
     const result: getDetailsProps = await res?.json();
-    return result.PBpcUC;
+    if (result.PBpcUC === "5") {
+      return "invisible";
+    } else {
+      return result.PBpcUC;
+    }
   } catch (error) {
     console.log(error);
   }
